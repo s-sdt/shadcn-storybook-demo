@@ -17,31 +17,41 @@ import { Button } from "../button/button";
 import { Badge } from "../badge/badge";
 
 export type requestCardprops = {
-  event: string;
+  id: string; // visa Detaljer
+  uid: string; // customer
+  type: string; // lunch
   date: string;
-  kund: string;
   status: "BOKAD" | "SKICKAD" | "INAKTIV";
-  tillfälle: string;
-  guests: string;
-  menu: string;
-  location: string;
+  occasion: string;
+  number_of_guests: string;
+  foodType: string[]; // local
+  variant: string; //multiple
+  municipality: string;
+  distance: number;
+  address: string;
+  onHide?: () => void;
 };
 
 export function RequestCard({
-  event,
+  id,
+  uid,
+  type,
   date,
   status,
-  kund,
-  tillfälle,
-  guests,
-  menu,
-  location,
+  occasion,
+  number_of_guests,
+  foodType,
+  variant,
+  distance,
+  municipality,
+  address,
+  onHide,
 }: requestCardprops) {
   return (
     <Card className="w-96  p-6 relative bg-white rounded-lg outline outline-offset-[-1.04px] outline-stone-300 inline-flex flex-col justify-start items-start gap-4 overflow-hidden">
       <CardTitle className="self-stretch h-24 relative rounded-sm border-b border-stone-300/50 inline-flex justify-between items-start">
         <div
-          data-status="Bokad"
+          data-status={status}
           className="w-28 h-11 p-2.5 left-[202.70px] top-0 absolute flex justify-start items-center overflow-hidden"
         >
           {status === "BOKAD" ? (
@@ -82,7 +92,7 @@ export function RequestCard({
         </div>
         <div className="h-24 left-0 top-0 absolute inline-flex flex-col justify-start items-start gap-1">
           <div className="self-stretch justify-center text-stone-900 text-xl font-semibold font-['Inter'] leading-7 tracking-wide">
-            {event}
+            {type}
           </div>
           <div className="self-stretch inline-flex justify-start items-center overflow-hidden">
             <CircleUserRound className="w-3.5 h-4 opacity-50" />
@@ -91,7 +101,7 @@ export function RequestCard({
                 variant={"link"}
                 className="text-center justify-center text-zinc-600 text-sm font-semibold font-['Inter'] underline leading-5"
               >
-                {kund}
+                {uid}
               </Button>
             </div>
           </div>
@@ -102,9 +112,10 @@ export function RequestCard({
             </div>
           </div>
         </div>
-        <Button variant={"ghost"}>
+        <Button variant={"ghost"} onClick={onHide}>
           <EyeOff className="w-6 h-5 left-[262.99px] top-[55.09px] absolute opacity-50" />
         </Button>
+
         <div className="w-72 h-12 left-[-15.36px] top-[61.68px] absolute origin-top-left rotate-[-10deg] inline-flex justify-center items-center gap-2.5 opacity-70">
           <div
             className={
@@ -120,7 +131,7 @@ export function RequestCard({
         </div>
       </CardTitle>
 
-      <CardContent className="w-80 h-44 pl-1 pt-4 inline-flex flex-col justify-start items-start">
+      <CardContent className="w-80  pl-1 pt-4 inline-flex flex-col justify-start items-start">
         {/* Guest */}
         <div className="self-stretch inline-flex justify-start items-center gap-3">
           <Users className="w-5 h-2.5" />
@@ -132,7 +143,7 @@ export function RequestCard({
             </div>
             <div className="self-stretch flex flex-col justify-start items-start">
               <div className="justify-center text-stone-900 text-sm font-semibold font-['Inter'] leading-4 tracking-wide">
-                {guests}
+                {number_of_guests}
               </div>
             </div>
           </div>
@@ -143,12 +154,15 @@ export function RequestCard({
           <div className="flex-1 h-10 inline-flex flex-col justify-start items-start">
             <div className="self-stretch flex flex-col justify-start items-start">
               <div className="justify-center text-stone-700 text-xs font-bold font-['Inter'] uppercase leading-6 tracking-tight">
-                Multiple Meny
+                {/*  Meny */}
+                Meny
               </div>
             </div>
             <div className="self-stretch flex flex-col justify-start items-start">
               <div className="justify-center text-stone-900 text-xs font-bold font-['Inter'] leading-4 tracking-wide">
-                {menu}
+                {/* {menu} */}
+                {variant},{""}
+                {foodType.join(", ")}
               </div>
             </div>
           </div>
@@ -169,33 +183,34 @@ export function RequestCard({
             </div>
             <div className="self-stretch flex flex-col justify-start items-start">
               <div className="justify-center text-stone-900 text-sm font-semibold font-['Inter'] leading-4 tracking-wide">
-                {tillfälle}
+                {occasion}
               </div>
             </div>
           </div>
         </div>
         {/* Location */}
-
-        <div className="size- p-2.5  relative rounded-sm outline outline-offset-[-1.04px] outline-yellow-800 inline-flex flex-col justify-start items-start overflow-hidden">
-          <div className="w-80 p-2.5 inline-flex items-center gap-2 overflow-hidden">
+        <div className=" w-full mt-3 rounded-sm outline outline-offset-[-1.04px] outline-yellow-800 overflow-hidden inline-flex flex-col justify-start items-start">
+          <div className="w-80 p-2.5 inline-flex items-center gap-2">
             <MapPin className="w-4 h-5 shrink-0" />
             <div className="inline-flex flex-col justify-start items-start">
               <div className="justify-center text-stone-900 text-xs font-bold font-['Inter'] capitalize leading-4 tracking-wide">
-                {location} (0 km)
+                {municipality} ({distance.toFixed(1)} km)
               </div>
               <div className="justify-center text-stone-900 text-[10.40px] font-semibold font-['Inter'] leading-4 tracking-wide">
-                Storgatan 1, 12345 Stockholm
+                {address}
               </div>
             </div>
           </div>
           <img
-            className="w-72 h-32 p-2.5 left-0 top-[50.19px] absolute rounded-sm"
+            className="w-full h-32 object-cover"
             src="https://placehold.co/304x122"
           />
         </div>
       </CardContent>
       <CardFooter className="w-full rounded-lg shadow-[0px_1.0394999980926514px_2.0789999961853027px_0px_rgba(0,0,0,0.05)] inline-flex justify-center items-center gap-2">
-        <Button className="w-full">Visa Detaljer</Button>
+        <Button className="w-full" asChild>
+          <a href={`/workspace/chef/requests/${id}`}>Visa Detaljer</a>
+        </Button>
       </CardFooter>
     </Card>
   );
