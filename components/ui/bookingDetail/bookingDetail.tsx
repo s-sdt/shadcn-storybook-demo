@@ -2,15 +2,13 @@ import {
   Calendar,
   CircleCheck,
   CircleX,
-  Clock,
   Clock3,
-  Icon,
   MoveLeft,
   ShieldCheck,
   Users,
+  X,
 } from "lucide-react";
 import { Card, CardContent, CardHeader } from "../card/card";
-import { DropdownMenu } from "radix-ui";
 import {
   Accordion,
   AccordionContent,
@@ -38,8 +36,13 @@ export type BookingDetailProps = {
   basePrice: string;
   pricePerGuest: string;
   weekdayModifier: string;
+  weekdayName?: string;
   platformFee: string;
   chefFee: string;
+  createdDate: string;
+  completedDate?: string;
+  bookingDesc: string;
+  missingKitchenArticles: string[];
   onClick?: () => void;
   onCancel?: () => void;
 };
@@ -97,8 +100,13 @@ export function BookingDetail({
   basePrice,
   pricePerGuest,
   weekdayModifier,
+  weekdayName,
   platformFee,
   chefFee,
+  createdDate,
+  completedDate,
+  bookingDesc,
+  missingKitchenArticles,
   onClick,
   onCancel,
 }: BookingDetailProps) {
@@ -139,7 +147,7 @@ export function BookingDetail({
             <div className="justify-center text-zinc-600 text-base font-normal font-['Inter'] leading-6">
               Veckodagsmodifierare
               <br />
-              (Lördag)
+              {weekdayName && `(${weekdayName})`}
             </div>
             <div className="self-stretch pl-2.5 inline-flex flex-col justify-start items-end">
               <div className="text-right justify-center text-stone-900 text-base font-medium font-['Inter'] leading-6">
@@ -185,121 +193,162 @@ export function BookingDetail({
     },
   ];
   return (
-    <div className="w-96 h-314.25 relative bg-stone-50 inline-flex flex-col justify-start items-start">
-      {/* Header */}
-      <div className="w-96 h-16 left-0 top-0 absolute bg-stone-50 border-b border-stone-200">
-        <Button variant={"ghost"} onClick={onClick}>
-          <MoveLeft className="text-yellow-500 text-3xl size-4 left-6 top-[23.50px] absolute " />
-        </Button>
-        <div className="left-16 top-[17.50px] absolute justify-center text-stone-900 text-xl font-semibold font-['Inter'] leading-7 tracking-wide">
-          Booking Detail
-        </div>
-      </div>
-      {/* Status + Booking ID */}
-      <div className="self-stretch mt-16 h-20 inline-flex justify-between items-center">
-        {/* <div className="w-44 inline-flex flex-col justify-start items-start">
-          <div className="self-stretch justify-center text-zinc-600 text-xs font-normal font-['Inter'] uppercase leading-4 tracking-wide">
-            BOOKING STATUS
+    <>
+      <div className="w-96 h-314.25 relative bg-stone-50 inline-flex flex-col justify-start items-start">
+        {/* Header */}
+        <div className="w-96 h-16 left-0 top-0 absolute bg-stone-50 border-b border-stone-200">
+          <Button variant={"ghost"} onClick={onClick}>
+            <MoveLeft className="text-yellow-500 text-3xl size-4 left-6 top-[23.50px] absolute " />
+          </Button>
+          <div className="left-16 top-[17.50px] absolute justify-center text-stone-900 text-xl font-semibold font-['Inter'] leading-7 tracking-wide">
+            Booking Detail
           </div>
-          <div className="size- pt-1 flex flex-col justify-start items-start">
-            <div className="size- shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)] inline-flex justify-start items-center">
-              <CircleCheck className="size-5" />
-              <div className="w-24 h-12 px-3 py-1 relative bg-emerald-100 rounded-xl inline-flex flex-col justify-start items-start">
-                <div className="left-4.5 top-4 absolute justify-center text-emerald-800 text-base font-semibold font-['Inter'] leading-4">
-                  {status}
+        </div>
+        {/* Status + Booking ID */}
+        <div className="self-stretch mt-16 h-20 inline-flex justify-between items-center">
+          <div className=" inline-flex justify-start items-center">
+            {statusStyle[status].icon}
+            <Badge className={statusStyle[status].className}>
+              {statusStyle[status].label}
+            </Badge>
+          </div>
+          <div className="w-28 inline-flex flex-col justify-start items-end gap-[0.50px]">
+            <div className="self-stretch text-right justify-center text-zinc-600 text-xs font-normal font-['Inter'] uppercase leading-4 tracking-wide">
+              BOOKING ID
+            </div>
+            <div className="text-right justify-center text-stone-900 text-base font-medium font-['Inter'] leading-6">
+              {requestId.slice(0, 6)}...
+            </div>
+          </div>
+        </div>
+
+        {/* Main Card */}
+        <Card className="self-stretch px-6 pt-8 pb-6 bg-white rounded-lg shadow-[0px_4px_20px_0px_rgba(0,0,0,0.04)] outline -outline-offset-1 outline-gray-200 inline-flex flex-col justify-start items-start gap-6">
+          {/* cardHeader */}
+          <CardHeader className="self-stretch border-b border-gray-200 inline-flex flex-col justify-start items-start gap-1">
+            <div className="self-stretch justify-center text-stone-900 text-3xl font-semibold font-['Inter'] leading-8">
+              {title}
+            </div>
+            <div className="self-stretch inline-flex justify-start items-center gap-1.5">
+              <div className="size- inline-flex flex-col justify-center items-center">
+                <Calendar className="w-3.5 h-4" />
+              </div>
+              <div className="size- inline-flex flex-col justify-start items-start gap-0.5">
+                <div className="justify-center text-stone-900 text-base font-normal font-['Inter'] leading-6">
+                  {eventDate}
                 </div>
               </div>
             </div>
-          </div>
-        </div> */}
-        <div className=" inline-flex justify-start items-center">
-          {/* <CircleCheck className="size-5" /> */}
-          {/* <div className="w-24 h-12 px-3 py-1 relative bg-emerald-100 rounded-xl inline-flex flex-col justify-start items-start"> */}
-          {/* <Badge className="left-4.5 top-4 absolute justify-center text-emerald-800 text-base font-semibold font-['Inter'] leading-4"> */}
-          {statusStyle[status].icon}
-          <Badge className={statusStyle[status].className}>
-            {statusStyle[status].label}
-          </Badge>
-
-          {/* </div> */}
-        </div>
-        <div className="w-28 inline-flex flex-col justify-start items-end gap-[0.50px]">
-          <div className="self-stretch text-right justify-center text-zinc-600 text-xs font-normal font-['Inter'] uppercase leading-4 tracking-wide">
-            BOOKING ID
-          </div>
-          <div className="text-right justify-center text-stone-900 text-base font-medium font-['Inter'] leading-6">
-            {requestId.slice(0, 6)}...
-          </div>
-        </div>
-      </div>
-
-      {/* Main Card */}
-      <Card className="self-stretch px-6 pt-8 pb-6 bg-white rounded-lg shadow-[0px_4px_20px_0px_rgba(0,0,0,0.04)] outline -outline-offset-1 outline-gray-200 inline-flex flex-col justify-start items-start gap-6">
-        {/* cardHeader */}
-        <CardHeader className="self-stretch border-b border-gray-200 inline-flex flex-col justify-start items-start gap-1">
-          <div className="self-stretch justify-center text-stone-900 text-3xl font-semibold font-['Inter'] leading-8">
-            {title}
-          </div>
-          <div className="self-stretch inline-flex justify-start items-center gap-1.5">
-            <div className="size- inline-flex flex-col justify-center items-center">
-              <Calendar className="w-3.5 h-4" />
-            </div>
-            <div className="size- inline-flex flex-col justify-start items-start gap-0.5">
-              <div className="justify-center text-stone-900 text-base font-normal font-['Inter'] leading-6">
-                {eventDate}
+            <div className="self-stretch inline-flex justify-start items-center gap-1.5">
+              <div className="w-4 pr-3 pt-0.5 inline-flex flex-col justify-start items-start">
+                <Users className="w-5 h-3.5" />
+              </div>
+              <div className="size- inline-flex flex-col justify-start items-start gap-0.5">
+                <div className="justify-center text-stone-900 text-base font-normal font-['Inter'] leading-6">
+                  {number_of_guests} Personer
+                </div>
               </div>
             </div>
-          </div>
-          <div className="self-stretch inline-flex justify-start items-center gap-1.5">
-            <div className="w-4 pr-3 pt-0.5 inline-flex flex-col justify-start items-start">
-              <Users className="w-5 h-3.5" />
+          </CardHeader>
+          {/* cardCotent */}
+          <CardContent className="self-stretch p-6 bg-white rounded-lg shadow-[0px_4px_20px_0px_rgba(211,197,172,0.31)] outline -outline-offset-1 outline-stone-200 inline-flex flex-col justify-start items-start gap-1">
+            <div className="self-stretch justify-center text-yellow-800 text-xs font-normal font-['Inter'] uppercase leading-4 tracking-[2.40px]">
+              PRISDETALJER
             </div>
-            <div className="size- inline-flex flex-col justify-start items-start gap-0.5">
-              <div className="justify-center text-stone-900 text-base font-normal font-['Inter'] leading-6">
-                {number_of_guests} Personer
+            <div className="self-stretch justify-center text-zinc-600 text-sm font-light font-['Inter'] leading-5">
+              Detaljerad prisuppdelning för denna bokning
+            </div>
+            <div className="self-stretch flex flex-col justify-start items-start gap-4">
+              <div className="self-stretch  px-3.5 py-2.5 bg-white rounded-sm inline-flex justify-center items-center">
+                <div className="flex-1 justify-center text-stone-900 text-base font-semibold font-['Inter'] leading-6">
+                  {/* {totalAmount} */}
+                  <Accordion type="single" collapsible defaultValue="plans">
+                    {item.map((item) => (
+                      <AccordionItem key={item.value} value={item.value}>
+                        <AccordionTrigger>{item.trigger}</AccordionTrigger>
+                        <AccordionContent>{item.content}</AccordionContent>
+                      </AccordionItem>
+                    ))}
+                  </Accordion>
+                </div>
+
+                <div className="size- px-2 py-2.5 flex justify-start items-center gap-2.5 overflow-hidden">
+                  <div className="size-6 relative overflow-hidden">
+                    {/* <div className="w-2.5 h-[4.80px] left-[7.20px] top-[9.60px] absolute outline outline-offset-[-0.90px] outline-gray-500" /> */}
+                  </div>
+                </div>
               </div>
             </div>
+            <div className="self-stretch h-11 p-3 bg-stone-200/10 inline-flex justify-center items-center">
+              <div className="size- pr-2 inline-flex flex-col justify-start items-start">
+                <ShieldCheck className="w-3.5 h-4" />
+              </div>
+              <div className="justify-center text-gray-600 text-sm font-normal font-['Inter'] leading-5">
+                Secured by Stripe Payments
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Booking Description +timeline */}
+        <div className="self-stretch  mt-8 p-6 bg-white rounded-lg shadow-[0px_4px_20px_0px_rgba(0,0,0,0.04)] outline -outline-offset-1 outline-stone-200 inline-flex flex-col justify-start items-start gap-8">
+          <div className="self-stretch p-6 bg-white rounded-xl border-b border-gray-200 flex flex-col justify-start items-start gap-2">
+            <div className="self-stretch justify-center text-yellow-800 text-xs font-normal font-['Inter'] uppercase leading-4 tracking-[2.40px]">
+              Om bokning
+            </div>
+            <div className="self-stretch justify-center text-zinc-600 text-base font-normal font-['Inter'] leading-6">
+              {bookingDesc}
+            </div>
           </div>
-        </CardHeader>
-        {/* cardCotent */}
-        <CardContent className="self-stretch p-6 bg-white rounded-lg shadow-[0px_4px_20px_0px_rgba(211,197,172,0.31)] outline -outline-offset-1 outline-stone-200 inline-flex flex-col justify-start items-start gap-1">
+          <div className="size- pl-6 border-l border-stone-200 flex flex-col justify-start items-start gap-10">
+            <div className="w-72 relative flex flex-col justify-start items-start gap-2">
+              <div className="self-stretch justify-center text-stone-900 text-base font-semibold font-['Inter'] leading-4">
+                Bokning skapad
+              </div>
+              <div className="self-stretch justify-center text-zinc-600 text-sm font-normal font-['Inter'] leading-5">
+                {createdDate}
+              </div>
+              <div className="size-2.5 -left-7.75 top-1 absolute bg-blue-500 rounded-xl shadow-[0px_1px_2px_0px_rgba(0,0,0,0.05)] border-2 border-blue-200" />
+            </div>
+            <div className="w-72 relative flex flex-col justify-start items-start gap-2">
+              <div className="self-stretch justify-center text-stone-900 text-base font-semibold font-['Inter'] leading-4">
+                Betalning slutförd
+              </div>
+              <div className="self-stretch justify-center text-zinc-600 text-sm font-normal font-['Inter'] leading-5">
+                {completedDate}
+              </div>
+              <div className="size-2.5 -left-7.75 top-1 absolute bg-green-500 rounded-xl shadow-[0px_1px_2px_0px_rgba(0,0,0,0.05)] border-2 border-emerald-100" />
+            </div>
+          </div>
+        </div>
+        {/* SAKNADE KÖKSDETALJER */}
+        <div className="self-stretch mt-8 p-6 bg-white rounded-xl shadow-[0px_4px_12px_0px_rgba(0,0,0,0.05)] outline outline-1 outline-offset-[-1px] outline-gray-200 inline-flex flex-col justify-start items-start gap-2">
           <div className="self-stretch justify-center text-yellow-800 text-xs font-normal font-['Inter'] uppercase leading-4 tracking-[2.40px]">
-            PRISDETALJER
+            SAKNADE KÖKSDETALJER
           </div>
-          <div className="self-stretch justify-center text-zinc-600 text-sm font-light font-['Inter'] leading-5">
-            Detaljerad prisuppdelning för denna bokning
+          <div className="self-stretch justify-center text-gray-600 text-base font-normal font-['Inter'] leading-6">
+            {missingKitchenArticles.map((item, i) => (
+              <div key={i}>{item}</div>
+            ))}
           </div>
-          <div className="self-stretch flex flex-col justify-start items-start gap-4">
-            <div className="self-stretch  px-3.5 py-2.5 bg-white rounded-sm inline-flex justify-center items-center">
-              <div className="flex-1 justify-center text-stone-900 text-base font-semibold font-['Inter'] leading-6">
-                {/* {totalAmount} */}
-                <Accordion type="single" collapsible defaultValue="plans">
-                  {item.map((item) => (
-                    <AccordionItem key={item.value} value={item.value}>
-                      <AccordionTrigger>{item.trigger}</AccordionTrigger>
-                      <AccordionContent>{item.content}</AccordionContent>
-                    </AccordionItem>
-                  ))}
-                </Accordion>
-              </div>
+        </div>
 
-              <div className="size- px-2 py-2.5 flex justify-start items-center gap-2.5 overflow-hidden">
-                <div className="size-6 relative overflow-hidden">
-                  {/* <div className="w-2.5 h-[4.80px] left-[7.20px] top-[9.60px] absolute outline outline-offset-[-0.90px] outline-gray-500" /> */}
-                </div>
-              </div>
+        {/* dokme */}
+        <div className="self-stretch  mt-auto p-4 bg-white border-t border-stone-200 inline-flex flex-col justify-start items-start gap-3">
+          <div className="w-full flex flex-col justify-start items-center gap-4">
+            <div className="w-full h-12 bg-orange-50 rounded-2xl outline -outline-offset-1 outline-red-700/10 inline-flex justify-center items-center gap-2">
+              <X className="size-5 text-red-500" />
+              <Button
+                onClick={onCancel}
+                variant={"ghost"}
+                className="text-center justify-center text-red-700 text-base font-semibold font-['Inter'] uppercase leading-6 tracking-widest"
+              >
+                AVBOKA BOKNING
+              </Button>
             </div>
           </div>
-          <div className="self-stretch h-11 p-3 bg-stone-200/10 inline-flex justify-center items-center">
-            <div className="size- pr-2 inline-flex flex-col justify-start items-start">
-              <ShieldCheck className="w-3.5 h-4" />
-            </div>
-            <div className="justify-center text-gray-600 text-sm font-normal font-['Inter'] leading-5">
-              Secured by Stripe Payments
-            </div>
-          </div>
-        </CardContent>
-      </Card>
-    </div>
+        </div>
+      </div>
+    </>
   );
 }
