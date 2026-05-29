@@ -6,126 +6,48 @@ const meta = {
   component: BookingDetail,
   parameters: { layout: "centered" },
   tags: ["autodocs"],
+  args: {
+    requestId: "g1KTHQqX0XIHqqow0gL",
+    title: "Dinner event",
+    eventDate: "14 Aug 2024",
+    number_of_guests: 7,
+    totalAmount: "6 700,00",
+    basePrice: "2 500,00",
+    pricePerGuest: "400,00",
+    weekdayModifier: "1.5x",
+    weekdayName: "Lördag",
+    platformFee: "12%",
+    chefFee: "5 896,00",
+    createdDate: "26 Jan 2026",
+    completedDate: "26 Feb 2026",
+    bookingDesc: "om bokning",
+    missingKitchenArticles: ["Här är en lista..."],
+  },
 } satisfies Meta<typeof BookingDetail>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-const BookingDetailTemplate: Story = {
-  args: {
-    requestId: "",
-    title: "",
-    status: "confirmed",
-    eventDate: "",
-    number_of_guests: 0,
-    totalAmount: "",
-    basePrice: "",
-    pricePerGuest: "",
-    weekdayModifier: "",
-    platformFee: "",
-    chefFee: "",
-  },
-  render: (args) => <BookingDetail {...args} />,
-};
-
 export const Confirmed: Story = {
-  ...BookingDetailTemplate,
-  args: {
-    requestId: "g1KTHQqX0XIHqqow0gL",
-    title: "Dinner event",
-    status: "confirmed",
-    eventDate: "14 Aug 2024",
-    number_of_guests: 7,
-    totalAmount: "6 700,00 ",
-    basePrice: "2 500,00",
-    pricePerGuest: "400,00",
-    weekdayModifier: "1.5x",
-    platformFee: "12%",
-    chefFee: "5 896,00",
-  },
+  args: { status: "confirmed" },
 };
 
 export const Cancelled: Story = {
-  ...BookingDetailTemplate,
-  args: {
-    requestId: "g1KTHQqX0XIHqqow0gL",
-    title: "Dinner event",
-    status: "cancelled",
-    eventDate: "14 Aug 2024",
-    number_of_guests: 7,
-    totalAmount: "6 700,00 ",
-    basePrice: "2 500,00",
-    pricePerGuest: "400,00",
-    weekdayModifier: "1.5x",
-    platformFee: "12%",
-    chefFee: "5 896,00",
-  },
+  args: { status: "cancelled" },
 };
 
 export const PendingPayment: Story = {
-  ...BookingDetailTemplate,
-  args: {
-    requestId: "g1KTHQqX0XIHqqow0gL",
-    title: "Dinner event",
-    status: "pending_payment",
-    eventDate: "14 Aug 2024",
-    number_of_guests: 7,
-    totalAmount: "6 700,00 ",
-    basePrice: "2 500,00",
-    pricePerGuest: "400,00",
-    weekdayModifier: "1.5x",
-    platformFee: "12%",
-    chefFee: "5 896,00",
-  },
+  args: { status: "pending_payment" },
 };
 
 export const WaitingForPayment: Story = {
-  ...BookingDetailTemplate,
-  args: {
-    requestId: "g1KTHQqX0XIHqqow0gL",
-    title: "Dinner event",
-    status: "waiting_for_payment",
-    eventDate: "14 Aug 2024",
-    number_of_guests: 7,
-    totalAmount: "6 700,00 ",
-    basePrice: "2 500,00",
-    pricePerGuest: "400,00",
-    weekdayModifier: "1.5x",
-    platformFee: "12%",
-    chefFee: "5 896,00",
-  },
+  args: { status: "waiting_for_payment" },
 };
 
 export const CancelPendingRefund: Story = {
-  ...BookingDetailTemplate,
-  args: {
-    requestId: "g1KTHQqX0XIHqqow0gL",
-    title: "Dinner event",
-    status: "cancel_pending_refund",
-    eventDate: "14 Aug 2024",
-    number_of_guests: 7,
-    totalAmount: "6 700,00 ",
-    basePrice: "2 500,00",
-    pricePerGuest: "400,00",
-    weekdayModifier: "1.5x",
-    platformFee: "12%",
-    chefFee: "5 896,00",
-  },
+  args: { status: "cancel_pending_refund" },
 };
 
 export const CancellationFailed: Story = {
-  ...BookingDetailTemplate,
-  args: {
-    requestId: "g1KTHQqX0XIHqqow0gL",
-    title: "Dinner event",
-    status: "cancellation_failed",
-    eventDate: "14 Aug 2024",
-    number_of_guests: 7,
-    totalAmount: "6 700,00 ",
-    basePrice: "2 500,00",
-    pricePerGuest: "400,00",
-    weekdayModifier: "1.5x",
-    platformFee: "12%",
-    chefFee: "5 896,00",
-  },
+  args: { status: "cancellation_failed" },
 };
