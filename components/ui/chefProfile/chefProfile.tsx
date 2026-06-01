@@ -1,5 +1,6 @@
 import {
   BadgeCheck,
+  CircleCheck,
   Languages,
   MapPin,
   ShieldCheck,
@@ -17,7 +18,7 @@ export type ChefProfileMenu = {
 
 export type KöksFacta = {
   kökstyp: string;
-  kapacitet: number;
+  kapacitet: string;
   språk: string[];
 };
 
@@ -126,7 +127,7 @@ export function ChefProfile({
 
         {/* Testimonials */}
         <div className="mt-8">
-          {reviews.map((review) => (
+          {/* {reviews.map((review) => (
             <Testimonial
               key={review.id}
               customerName={review.customerName}
@@ -134,7 +135,8 @@ export function ChefProfile({
               rating={review.rating}
               comment={review.comment}
             />
-          ))}
+          ))} */}
+          {<Testimonial reviews={reviews} />}
         </div>
 
         {/* Gallery */}
@@ -151,7 +153,7 @@ export function ChefProfile({
                 Visa alla
               </Button>
             </div>
-            <div className="self-stretch inline-flex justify-between items-start overflow-hidden">
+            <div className="self-stretch inline-flex justify-between gap-3 items-start overflow-hidden">
               {gallery.slice(0, 2).map((url, i) => (
                 <div
                   key={i}
@@ -234,7 +236,7 @@ export function ChefProfile({
                   key={i}
                   className="self-stretch inline-flex justify-start items-start gap-3"
                 >
-                  <div className="size-4 mt-1 bg-yellow-500 shrink-0" />
+                  <CircleCheck className="size-4 mt-1 text-yellow-500 shrink-0" />
                   <div className="flex flex-col">
                     <div className="text-stone-900 text-base font-normal font-['Inter'] leading-6">
                       {course.name}
