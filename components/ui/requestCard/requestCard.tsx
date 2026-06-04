@@ -5,10 +5,8 @@ import {
   CircleCheck,
   CircleUserRound,
   CircleX,
-  Clock,
   Clock3,
   Eye,
-  EyeOff,
   MapPin,
   Users,
 } from "lucide-react";
@@ -48,167 +46,144 @@ export function RequestCard({
   onHide,
 }: requestCardprops) {
   return (
-    <Card className="w-96  p-6 relative bg-white rounded-lg outline outline-offset-[-1.04px] outline-stone-300 inline-flex flex-col justify-start items-start gap-4 overflow-hidden">
-      <CardTitle className="self-stretch h-24 relative rounded-sm border-b border-stone-300/50 inline-flex justify-between items-start">
-        <div
-          data-status={status}
-          className="w-28 h-11 p-2.5 left-[202.70px] top-0 absolute flex justify-start items-center overflow-hidden"
-        >
-          {status === "BOKAD" ? (
-            <CircleCheck className="size-5  text-emerald-500" />
-          ) : status === "SKICKAD" ? (
-            <Clock3 className="size-5  text-yellow-500" />
-          ) : (
-            <CircleX className="size-5  text-red-500" />
-          )}
+    <Card className="self-stretch p-6 inline-flex flex-col justify-start items-start gap-2">
+      <CardTitle className="w-full  relative  border-b border-stone-300/50 inline-flex flex-col justify-start items-start overflow-hidden ">
+        <div className="flex flex-col ">
+          {/* event */}
+          <div className=" inline-flex justify-start items-start">
+            <p className=" text-stone-900 text-xl font-semibold  leading-7 tracking-wide">
+              {type}
+            </p>
+          </div>
 
-          <Badge
-            // variant={status === "BOKAD" ? "default" : "outline"}
-            // className="justify-center text-green-800 text-[10px] font-bold font-['Inter'] uppercase leading-4 tracking-wide"
-            // variant={status === "BOKAD" ? "default" : "outline"}
-            // className={
-            //   status === "BOKAD"
-            //     ? "justify-center text-green-800 bg-green-100 border-green-200 text-[10px] font-bold font-['Inter'] uppercase leading-4 tracking-wide"
-            //     : "justify-center text-blue-800 bg-blue-100 border-blue-200 text-[10px] font-bold font-['Inter'] uppercase leading-4 tracking-wide"
-            // }
-            variant="outline"
-            className={
-              status === "BOKAD"
-                ? "text-green-800 bg-green-100 border-green-500 text-[10px] font-bold font-['Inter'] uppercase leading-4 tracking-wide"
-                : status === "SKICKAD"
-                  ? "text-red-500 bg-yellow-100 border-yellow-500 text-[10px] font-bold font-['Inter'] uppercase leading-4 tracking-wide"
-                  : "text-red-500 bg-red-100 border-red-500 text-[10px] font-bold font-['Inter'] uppercase leading-4 tracking-wide"
-            }
-          >
-            {status}
-          </Badge>
-          {/* //////////// */}
-          {/* <div className="size- px-3 py-1 relative bg-green-100 rounded-xl inline-flex flex-col justify-start items-start overflow-hidden">
-            <div className="left-[23.39px] top-[2.08px] absolute text-center justify-center text-emerald-800 text-xs font-semibold font-['Inter'] leading-5">
-              {status} badge
-            </div>
-          </div> */}
-          {/* ////////////// */}
-        </div>
-        <div className="h-24 left-0 top-0 absolute inline-flex flex-col justify-start items-start gap-1">
-          <div className="self-stretch justify-center text-stone-900 text-xl font-semibold font-['Inter'] leading-7 tracking-wide">
-            {type}
+          {/* name */}
+          <div className=" inline-flex justify-start items-center gap-2">
+            <CircleUserRound className="size-4 opacity-50" />
+
+            <Button
+              variant={"link"}
+              className="text-center justify-center text-zinc-600 text-sm font-semibold  underline leading-5"
+            >
+              {uid}
+            </Button>
           </div>
-          <div className="self-stretch inline-flex justify-start items-center overflow-hidden">
-            <CircleUserRound className="w-3.5 h-4 opacity-50" />
-            <div className="size- px-1 bg-white rounded-xl inline-flex flex-col justify-start items-start overflow-hidden">
-              <Button
-                variant={"link"}
-                className="text-center justify-center text-zinc-600 text-sm font-semibold font-['Inter'] underline leading-5"
-              >
-                {uid}
-              </Button>
-            </div>
-          </div>
-          <div className="self-stretch h-7 inline-flex justify-start items-center gap-1.5">
-            <Calendar className="w-3.5 h-4" />
-            <div className="justify-center text-stone-700 text-sm font-normal font-['Inter'] leading-4 tracking-wide">
+          {/* date */}
+          <div className=" inline-flex justify-start items-center gap-2">
+            <Calendar className="size-4" />
+            <div className=" text-stone-700 text-sm font-normal  leading-4 tracking-wide">
               {date}
             </div>
           </div>
         </div>
-        <Button variant={"ghost"} onClick={onHide}>
-          <EyeOff className="w-6 h-5 left-[262.99px] top-[55.09px] absolute opacity-50" />
-        </Button>
+        <div className="flex items-center gap-1">
+          {/* Badge */}
+          <div className=" p-2.5 left-[202.70px] top-0 absolute flex justify-start items-center overflow-hidden">
+            {status === "BOKAD" ? (
+              <CircleCheck className="size-5  text-emerald-500" />
+            ) : status === "SKICKAD" ? (
+              <Clock3 className="size-5  text-yellow-500" />
+            ) : (
+              <CircleX className="size-5  text-red-500" />
+            )}
 
-        <div className="w-72 h-12 left-[-15.36px] top-[61.68px] absolute origin-top-left rotate-[-10deg] inline-flex justify-center items-center gap-2.5 opacity-70">
-          <div
-            className={
-              status === "BOKAD"
-                ? "w-80 self-stretch origin-top-left -rotate-3 opacity-30 text-center justify-center text-Accents-Green text-4xl font-semibold font-['Inter'] uppercase leading-4 tracking-wide  text-green-600"
-                : status === "SKICKAD"
-                  ? "w-80 self-stretch origin-top-left -rotate-3 opacity-30 text-center justify-center text-Accents-Green text-4xl font-semibold font-['Inter'] uppercase leading-4 tracking-wide  text-yellow-600"
-                  : "w-80 self-stretch origin-top-left -rotate-3 opacity-30 text-center justify-center text-Accents-Green text-4xl font-semibold font-['Inter'] uppercase leading-4 tracking-wide  text-red-600"
-            }
-          >
-            {status}
+            <Badge
+              variant="outline"
+              className={
+                status === "BOKAD"
+                  ? "text-green-800 bg-green-100 border-green-200 text-xs font-bold  uppercase leading-4 tracking-wide"
+                  : status === "SKICKAD"
+                    ? "text-red-800 bg-yellow-100 border-yellow-200 text-xs font-bold  uppercase leading-4 tracking-wide"
+                    : "text-red-800 bg-red-100 border-red-200 text-xs font-bold  uppercase leading-4 tracking-wide"
+              }
+            >
+              {status}
+            </Badge>
+          </div>
+
+          {/* hide/unhide button */}
+          <Button variant={"ghost"} onClick={onHide}>
+            <Eye className="size-4 left-[262.99px] top-[55.09px] absolute opacity-50" />
+          </Button>
+          {/* Background badge */}
+          <div className="w-full h-12 right-[17%] top-[61.68px] absolute origin-top-left rotate-[-10deg] inline-flex justify-center items-center gap-2.5 opacity-70">
+            <div
+              className={
+                status === "BOKAD"
+                  ? "self-stretch origin-top-left -rotate-3 opacity-30 text-center justify-center  text-4xl font-semibold  uppercase leading-4 tracking-wide  text-green-600"
+                  : status === "SKICKAD"
+                    ? " self-stretch origin-top-left -rotate-3 opacity-30 text-center justify-center  text-4xl font-semibold  uppercase leading-4 tracking-wide  text-yellow-600"
+                    : "self-stretch origin-top-left -rotate-3 opacity-30 text-center justify-center  text-4xl font-semibold  uppercase leading-4 tracking-wide  text-red-600"
+              }
+            >
+              {status}
+            </div>
           </div>
         </div>
       </CardTitle>
 
-      <CardContent className="w-80  pl-1 pt-4 inline-flex flex-col justify-start items-start">
+      <CardContent className="self-stretch pt-4 inline-flex flex-col justify-start items-start">
         {/* Guest */}
         <div className="self-stretch inline-flex justify-start items-center gap-3">
-          <Users className="w-5 h-2.5" />
-          <div className="flex-1 h-10 inline-flex flex-col justify-start items-start">
-            <div className="self-stretch flex flex-col justify-start items-start">
-              <div className="justify-center text-stone-700 text-xs font-bold font-['Inter'] uppercase leading-4 tracking-wide">
-                Gäst
-              </div>
-            </div>
-            <div className="self-stretch flex flex-col justify-start items-start">
-              <div className="justify-center text-stone-900 text-sm font-semibold font-['Inter'] leading-4 tracking-wide">
-                {number_of_guests}
-              </div>
-            </div>
+          <Users className="size-4" />
+          <div className="flex-1 flex flex-col ">
+            <span className="text-stone-700 text-xs font-normal uppercase leading-4 tracking-wide">
+              Gäst
+            </span>
+            <span className="text-stone-900 text-sm font-semibold leading-4 tracking-wide">
+              {number_of_guests}
+            </span>
           </div>
         </div>
         {/* Meny */}
-        <div className="size-lf-stretch inline-flex justify-start items-center gap-3">
-          <BookOpen className="w-4 h-3" />
-          <div className="flex-1 h-10 inline-flex flex-col justify-start items-start">
-            <div className="self-stretch flex flex-col justify-start items-start">
-              <div className="justify-center text-stone-700 text-xs font-bold font-['Inter'] uppercase leading-6 tracking-tight">
-                {/*  Meny */}
-                Meny
-              </div>
-            </div>
-            <div className="self-stretch flex flex-col justify-start items-start">
-              <div className="justify-center text-stone-900 text-xs font-bold font-['Inter'] leading-4 tracking-wide">
-                {/* {menu} */}
-                {variant},{""}
-                {foodType.join(", ")}
-              </div>
-            </div>
+
+        <div className="self-stretch inline-flex justify-start items-center mt-2 gap-3">
+          <BookOpen className="size-4" />
+          <div className="flex-1 flex flex-col ">
+            <span className="text-stone-700 text-xs font-normal uppercase leading-4 tracking-wide">
+              Meny
+            </span>
+            <span className="text-stone-900 text-sm font-semibold leading-4 tracking-wide">
+              {variant},{""}
+              {foodType.join(", ")}
+            </span>
           </div>
         </div>
+
         {/* Tillfälle */}
-        <div className="size-lf-stretch inline-flex justify-start items-center gap-3">
-          <Cake className="w-3.5 h-4" />
-          <div className="size- inline-flex flex-col justify-start items-start">
-            <div className="self-stretch flex flex-col justify-start items-start">
-              <div className="w-16 justify-center">
-                <span className="text-stone-700 text-[10.40px] font-bold font-['Inter'] uppercase leading-4 tracking-wide">
-                  Tillfälle
-                </span>
-                <span className="text-stone-700 text-[10.40px] font-medium font-['Inter'] uppercase leading-4 tracking-wide">
-                  {" "}
-                </span>
-              </div>
-            </div>
-            <div className="self-stretch flex flex-col justify-start items-start">
-              <div className="justify-center text-stone-900 text-sm font-semibold font-['Inter'] leading-4 tracking-wide">
-                {occasion}
-              </div>
-            </div>
+
+        <div className="self-stretch inline-flex justify-start items-center mt-2 gap-3">
+          <Cake className="size-4" />
+          <div className="flex-1 flex flex-col ">
+            <span className="text-stone-700 text-xs font-normal uppercase leading-4 tracking-wide">
+              Tillfälle
+            </span>
+            <span className="text-stone-900 text-sm font-semibold leading-4 tracking-wide">
+              {occasion}
+            </span>
           </div>
         </div>
+
         {/* Location */}
-        <div className=" w-full mt-3 rounded-sm outline outline-offset-[-1.04px] outline-yellow-800 overflow-hidden inline-flex flex-col justify-start items-start">
-          <div className="w-80 p-2.5 inline-flex items-center gap-2">
-            <MapPin className="w-4 h-5 shrink-0" />
+        <div className=" w-full mt-4 rounded-sm outline outline-offset-[-1.04px] outline-yellow-800 overflow-hidden inline-flex flex-col justify-start items-start">
+          <div className="w-full p-2.5 inline-flex items-center gap-2">
+            <MapPin className="size-4 " />
             <div className="inline-flex flex-col justify-start items-start">
-              <div className="justify-center text-stone-900 text-xs font-bold font-['Inter'] capitalize leading-4 tracking-wide">
+              <div className="justify-center text-stone-900 text-xs font-bold  capitalize leading-4 tracking-wide">
                 {municipality} ({distance.toFixed(1)} km)
               </div>
-              <div className="justify-center text-stone-900 text-[10.40px] font-semibold font-['Inter'] leading-4 tracking-wide">
+              <div className="justify-center text-stone-900 text-[10.40px] font-semibold  leading-4 tracking-wide">
                 {address}
               </div>
             </div>
           </div>
           <img
-            className="w-full h-32 object-cover"
+            className="w-full object-cover"
             src="https://placehold.co/304x122"
           />
         </div>
       </CardContent>
-      <CardFooter className="w-full rounded-lg shadow-[0px_1.0394999980926514px_2.0789999961853027px_0px_rgba(0,0,0,0.05)] inline-flex justify-center items-center gap-2">
-        <Button className="w-full" asChild>
+      <CardFooter className="self-stretch pt-4 inline-flex justify-center items-start gap-2">
+        <Button variant={"default"} className="flex-1 rounded-lg" asChild>
           <a href={`/workspace/chef/requests/${id}`}>Visa Detaljer</a>
         </Button>
       </CardFooter>

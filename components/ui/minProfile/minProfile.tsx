@@ -18,7 +18,6 @@ import {
   Select,
   SelectContent,
   SelectItem,
-  SelectSeparator,
   SelectTrigger,
   SelectValue,
 } from "../select";
@@ -41,7 +40,7 @@ export type MinProfileProps = {
   municipalityOptions: { label: string; value: string }[];
   onChangePic?: () => void;
   onAddGallery?: () => void;
-  onDeleteGallery?: (url: string) => void;
+  // onDeleteGallery?: (url: string) => void;
   onCancel?: () => void;
   onSave?: (data: MinProfileFormValues) => void;
 };
@@ -53,14 +52,14 @@ export function MinProfile({
   municipalityOptions = [],
   onChangePic,
   onAddGallery,
-  onDeleteGallery,
+  // onDeleteGallery,
   onCancel,
   onSave,
 }: MinProfileProps) {
   const form = useForm<MinProfileFormValues>({ defaultValues });
 
   return (
-    <div className="w-96 pb-3.5 bg-stone-50 flex flex-col items-start">
+    <div className="w-full sm:max-w-2xl mx-auto pb-3.5 bg-stone-50 flex flex-col items-start">
       {/* Hero  */}
       <div className="w-full h-40 bg-yellow-500/30 relative">
         <Button
@@ -74,15 +73,15 @@ export function MinProfile({
       {/* Avatar + title + actions */}
       <div className="w-full px-4 flex flex-col gap-4 -mt-12">
         <img
-          className="w-24 h-24 rounded-full border-4 border-white object-cover"
+          className="size-24 rounded-full border-4 border-white object-cover"
           src={avatarUrl ?? "https://placehold.co/96x96"}
           alt="avatar"
         />
         <div className="flex flex-col">
-          <div className="text-stone-900 text-3xl font-semibold font-['Inter'] leading-10">
+          <div className="text-stone-900 text-3xl font-semibold  leading-10">
             Min profil
           </div>
-          <div className="text-stone-700 text-base font-['Inter'] leading-6">
+          <div className="text-stone-700 text-base  leading-6">
             Uppdatera foto och personuppgifter.
           </div>
         </div>
@@ -105,10 +104,10 @@ export function MinProfile({
             render={({ field }) => (
               <div className="w-full p-4 bg-white rounded-lg outline outline-stone-300 flex flex-row justify-between items-center">
                 <div className="flex flex-col">
-                  <span className="text-stone-900 text-sm font-medium font-['Inter']">
+                  <span className="text-stone-900 text-sm font-medium ">
                     Publicera min profil
                   </span>
-                  <span className="w-56 text-stone-700 text-[10px] font-semibold font-['Inter']">
+                  <span className="w-full text-stone-700 text-[10px] font-semibold ">
                     När du är redo för att göra din profil offentlig, aktivera
                     detta
                   </span>
@@ -123,7 +122,7 @@ export function MinProfile({
 
           {/* Personlig information */}
           <div className="w-full flex flex-col gap-4 border-t-4 border-stone-300 pt-4">
-            <div className="text-stone-900 text-sm font-medium font-['Inter']">
+            <div className="text-stone-900 text-sm font-medium ">
               Personlig information
             </div>
             {/* Förnamn */}
@@ -213,9 +212,7 @@ export function MinProfile({
 
           {/* Om dig */}
           <div className="w-full flex flex-col gap-4 border-t-4 border-stone-300 pt-4">
-            <div className="text-stone-900 text-sm font-medium font-['Inter']">
-              Om dig
-            </div>
+            <div className="text-stone-900 text-sm font-medium ">Om dig</div>
             <FormField
               control={form.control}
               name="bio"
@@ -267,20 +264,25 @@ export function MinProfile({
           </div>
 
           {/* Galleri */}
-          <div className="w-full flex flex-col gap-4">
-            <div className="text-stone-900 text-sm font-medium font-['Inter']">
-              Galleri
-            </div>
 
-            <button
+          <div className="text-stone-900 text-sm font-medium ">Galleri</div>
+          <div className="w-full grid grid-cols-2 gap-4">
+            {gallery?.map((g, i) => (
+              <div key={i} className="relative">
+                <img src={g} className="w-full h-24 object-cover rounded-sm" />
+              </div>
+            ))}
+
+            <Button
+              variant={"outline"}
               onClick={onAddGallery}
-              className="w-24 h-24 bg-orange-50 rounded-sm outline -outline-offset-2 outline-stone-300 flex flex-col justify-center items-center gap-1"
+              className="w-full h-24 bg-orange-50 rounded-sm outline -outline-offset-2 outline-stone-300 flex flex-col justify-center items-center gap-1"
             >
-              <FileUp className="size-5 text-stone-500" />
-              <span className="text-stone-500 text-xs font-semibold font-['Inter']">
+              <FileUp className="size-4 text-stone-500" />
+              <span className="text-stone-500 text-xs font-semibold ">
                 Lägg till
               </span>
-            </button>
+            </Button>
           </div>
         </form>
       </Form>

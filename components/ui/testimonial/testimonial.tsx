@@ -18,24 +18,21 @@ export function Testimonial({ reviews }: { reviews: TestimonialProps[] }) {
 
   return (
     <div className="w-96 px-5 flex flex-col gap-4">
-      <div className="text-stone-900 text-xl font-medium font-['Inter'] leading-7 tracking-wide">
-        Recensioner
-      </div>
       <div className="w-80 p-6 bg-orange-50 rounded-lg shadow-[0px_4px_4px_0px_rgba(234,179,8,1.00)] flex flex-col gap-4">
         {/* Header */}
         <div className="self-stretch inline-flex justify-between items-center">
           <div className="flex items-center gap-3">
             <Avatar className="size-10 bg-stone-200 rounded-xl">
-              <AvatarFallback className="text-base font-bold font-['Inter']">
+              <AvatarFallback className="text-base font-bold ">
                 {firstname?.[0]?.toUpperCase()}
                 {lastname?.[0]?.toUpperCase()}
               </AvatarFallback>
             </Avatar>
             <div className="inline-flex flex-col">
-              <span className="text-stone-900 text-base font-semibold font-['Inter'] leading-6">
+              <span className="text-stone-900 text-base font-semibold  leading-6">
                 {review.customerName}
               </span>
-              <span className="text-stone-700/70 text-sm font-semibold font-['Inter'] leading-4 tracking-wide">
+              <span className="text-stone-700/70 text-sm font-semibold  leading-4 tracking-wide">
                 {review.date}
               </span>
             </div>
@@ -52,7 +49,7 @@ export function Testimonial({ reviews }: { reviews: TestimonialProps[] }) {
           </div>
         </div>
         {/* Comment */}
-        <div className="text-stone-700 text-xs font-normal font-['Inter'] leading-6">
+        <div className="text-stone-700 text-xs font-normal  leading-6">
           &quot;{review.comment}&quot;
         </div>
       </div>
