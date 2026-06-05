@@ -40,104 +40,58 @@ export function OfferCard({
   onChatta,
 }: OfferCardProps) {
   return (
-    <Card className="self-stretch p-6 inline-flex flex-col justify-start items-start gap-2">
-      <CardTitle className="w-full h-24 py-4 relative bg-white border-b border-yellow-800 inline-flex flex-col justify-start items-start overflow-hidden">
-        {/* name */}
-        <div className=" inline-flex justify-start items-start gap-11">
-          <p className=" text-stone-900 text-xl font-medium  leading-7 tracking-wide">
+    // <div className="self-stretch h-80 p-6 inline-flex flex-col justify-start items-start gap-2">
+    <Card className="h-80 p-6 inline-flex flex-col gap-2">
+      <CardTitle className="py-4 inline-flex flex-col">
+        <div className="flex justify-between">
+          <p className="text-stone-900 text-xl font-medium tracking-wide">
             {customerName}
           </p>
-        </div>
-        {/* date */}
-        <div className=" py-1 left-0 top-10.75 absolute inline-flex justify-start items-center gap-2">
-          <Calendar className="size-4" />
-          <div className=" text-stone-700 text-sm font-normal  leading-4 tracking-wide">
-            {date}
-          </div>
-        </div>
-
-        {/* Background badge */}
-        <div className="w-72 h-12 left-[-15.36px] top-[61.68px] absolute origin-top-left rotate-[-10deg] inline-flex  items-center gap-2.5 opacity-70">
-          <div
-            className={
-              status === "BOKAD"
-                ? "w-72 self-stretch origin-top-left -rotate-3 opacity-50 text-center  text-green-600 text-4xl font-semibold  uppercase leading-4 tracking-wide"
-                : "w-72 self-stretch origin-top-left -rotate-3 opacity-50 text-center  text-blue-600 text-4xl font-semibold  uppercase leading-4 tracking-wide"
-            }
-          >
-            {status}
-          </div>
-        </div>
-
-        {/* Right-side Badge */}
-        <div className=" px-2.5 py-1 left-50 top-12 absolute rounded-xl  flex flex-col justify-start items-start">
-          <Badge
-            variant={status === "BOKAD" ? "default" : "outline"}
-            className={
-              status === "BOKAD"
-                ? " text-green-800 bg-green-100 border-green-200 text-xs font-bold  uppercase leading-4 tracking-wide"
-                : " text-blue-800 bg-blue-100 border-blue-200 text-xs font-bold  uppercase leading-4 tracking-wide"
-            }
-          >
+          <Badge className="bg-green-50 text-green-700 dark:bg-green-950 dark:text-green-300">
             {status}
           </Badge>
         </div>
+        <div className="inline-flex items-center gap-2">
+          {/* <div className="size-3.5 bg-stone-700" /> */}
+          <Calendar className="w-3 h-3" />
+          <div className="text-stone-700 text-sm tracking-wide">{date}</div>
+        </div>
       </CardTitle>
 
-      <CardContent className="self-stretch pt-4 inline-flex flex-col justify-start items-start">
-        {/* event Type */}
-        <div className="self-stretch h-6 inline-flex justify-start items-center gap-1.5">
-          <UtensilsCrossed className="size-4 text-stone-700" />
-          <div className=" text-stone-700 text-base font-normal  leading-6">
-            {type}
-          </div>
+      <CardContent className="inline-flex flex-col gap-0.5">
+        <div className="inline-flex gap-1.5 items-center">
+          <UtensilsCrossed className="w-3 h-3.5" />
+          <div className="text-stone-700">{type}</div>
         </div>
         {/* guest */}
-        <div className="self-stretch h-6 inline-flex justify-start items-center gap-1.5">
-          <Users className="size-4  text-stone-700" />
-          <div className=" text-stone-700 text-base font-normal  leading-6">
-            {guests}
-          </div>
+
+        <div className="inline-flex gap-1.5 items-center">
+          <Users className="w-3 h-3.5" />
+          <div className="text-stone-700">{guests}</div>
         </div>
 
         {/* menu */}
 
-        <div className="self-stretch h-6 inline-flex justify-start items-center gap-1.5">
-          <BookOpen className="size-4  text-stone-700" />
-          <div className=" text-stone-700 text-base font-normal  leading-6">
-            {menu}
-          </div>
+        <div className="inline-flex gap-1.5 items-center">
+          <BookOpen className="w-3 h-3.5" />
+          <div className="text-stone-700">{menu}</div>
         </div>
 
         {/* price */}
-
-        <div className="self-stretch h-6 inline-flex justify-start items-center gap-1.5">
-          <Banknote className="size-4 text-stone-700" />
-
-          <div className=" text-stone-700 text-base font-normal  leading-6">
-            {price}
-          </div>
+        <div className="inline-flex gap-1.5 items-center">
+          <Banknote className="w-3 h-3.5" />
+          <span className="text-stone-700">{price}</span>
         </div>
       </CardContent>
-
-      {/* Card footer */}
-      <CardFooter className="self-stretch pt-4 inline-flex justify-center items-start gap-3">
-        <Button
-          onClick={onVisa}
-          variant={"default"}
-          className=" h-12 flex-1 rounded-lg"
-        >
-          <Eye className="size-5  text-yellow-900" />
-          Visa bokning
+      <CardFooter className="pt-4 inline-flex gap-3">
+        <Button className="w-36 h-12 rounded-2xl outline-stone-500">
+          <Eye className="text-yellow-900" />
+          <div className="text-yellow-900 font-semibold">Visa bokning</div>
         </Button>
 
-        <Button
-          onClick={onChatta}
-          variant={"outline"}
-          className=" h-12 flex-1 rounded-lg"
-        >
-          <MessageSquare className="size-5  text-yellow-900" />
-          Chatta
+        <Button className="w-36 h-12 rounded-2xl outline-stone-500">
+          <MessageSquare className="text-yellow-900" />
+          <div className="text-yellow-800 font-semibold">Chatta</div>
         </Button>
       </CardFooter>
     </Card>
