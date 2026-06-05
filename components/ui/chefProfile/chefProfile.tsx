@@ -61,56 +61,56 @@ export function ChefProfile({
       : 0;
 
   return (
-    <div className="w-full sm:max-w-2xl mx-auto pb-3.5 bg-stone-50 flex flex-col justify-start items-start">
-      <div className="self-stretch bg-white flex flex-col justify-start items-start ">
+    <div className="w-full sm:max-w-2xl mx-auto pb-3.5 bg-stone-50 flex flex-col ">
+      <div className=" bg-white flex flex-col  ">
         {/* Hero */}
-        <div className="w-full h-72  relative flex flex-col justify-center items-start ">
+        <div className="w-full h-72 flex flex-col ">
           <img
             className="w-full h-72 object-cover"
             src={avatarUrl}
             alt={`${firstName} ${lastName}`}
           />
         </div>
-
-        {/* Chef Name part */}
-        <div className="self-stretch  mt-8 px-5 rounded-2xl flex flex-col justify-start items-start gap-6">
-          <div className="self-stretch p-6 bg-white rounded-lg shadow-[0px_1px_2px_0px_rgba(0,0,0,0.05)] outline -outline-offset-1 outline-stone-300 flex flex-col justify-start items-start gap-4">
-            <div className="flex flex-col justify-start items-start gap-1">
-              <div className="px-3 py-1 bg-yellow-500/20 rounded-xl inline-flex justify-start items-center gap-1">
-                <Star className="size-3 fill-yellow-900" />
-                <div className=" text-yellow-900 text-sm font-semibold  uppercase leading-4 tracking-wide">
+        {/* Chef Name part +Request a quote */}
+        <div className=" mt-8 px-5 flex flex-col gap-6">
+          {/* chef Name */}
+          <div className="p-6 bg-white rounded-lg  border border-stone-300 flex flex-col gap-4">
+            <div className="flex flex-col items-start gap-2">
+              <div className="flex px-3 py-1 gap-2 bg-yellow-500/20 rounded-xl ">
+                <Star className="size-4 text-yellow-900 fill-yellow-900" />
+                <div className=" text-yellow-900 text-sm font-semibold  uppercase ">
                   TOP RATED
                 </div>
               </div>
-              <div className=" text-stone-900 text-3xl font-semibold  leading-8">
+              <h1 className=" text-stone-900 text-2xl font-medium tracking-wide ">
                 {firstName} {lastName}
-              </div>
-              <div className="self-stretch inline-flex justify-start items-center gap-1">
+              </h1>
+              <div className=" flex  gap-2">
                 <Star className="size-4 fill-yellow-500 text-yellow-500" />
-                <div className=" text-stone-700 text-base font-semibold  leading-6">
+                <div className=" text-stone-700  font-semibold  ">
                   {averageRating.toFixed(1)}
                 </div>
-                <div className=" text-stone-700/70 text-base font-normal  leading-6">
+                <div className=" text-stone-700/70 text-base font-normal ">
                   ({reviews.length}{" "}
                   {reviews.length === 1 ? "recension" : "recensioner"})
                 </div>
               </div>
-              <div className="self-stretch inline-flex justify-start items-center gap-1">
-                <MapPin className="w-3 h-3.5 text-stone-700" />
-                <div className=" text-stone-700 text-base font-normal  leading-6">
+              <div className="flex  gap-2">
+                <MapPin className="size-4 text-stone-700" />
+                <div className=" text-stone-700 text-base font-normal">
                   {municipality}
                 </div>
               </div>
             </div>
 
-            <div className="self-stretch pt-4 border-t border-stone-300 inline-flex flex-col justify-center items-start gap-2">
-              <div className="h-7 px-3 py-1.5 bg-rose-100 rounded-sm outline -outline-offset-1 outline-stone-300/30 flex flex-col justify-start items-start">
-                <div className=" text-stone-700 text-sm font-semibold  leading-4 tracking-wide">
+            <div className=" pt-4 border-t border-stone-300 inline-flex flex-col  items-start gap-2">
+              <div className="h-7 px-3 py-1 bg-rose-100 rounded-sm border border-stone-300/30 ">
+                <div className=" text-stone-700 text-sm font-semibold  tracking-wide">
                   Erfarenhet: {experienceYears}+ år
                 </div>
               </div>
-              <div className="h-7 px-3 py-1.5 bg-rose-100 rounded-sm outline -outline-offset-1 outline-stone-300/30 flex flex-col justify-start items-start">
-                <div className=" text-stone-700 text-sm font-semibold  leading-4 tracking-wide">
+              <div className="h-7 px-3 py-1 bg-rose-100 rounded-sm border border-stone-300/30 ">
+                <div className=" text-stone-700 text-sm font-semibold tracking-wide">
                   Specialitet: {specialitet}
                 </div>
               </div>
@@ -118,15 +118,14 @@ export function ChefProfile({
           </div>
           <Button
             onClick={onRequestQuote}
-            className="self-stretch py-4 w-full h-12 mb-4 bg-yellow-500 rounded-lg shadow-[0px_1px_2px_0px_rgba(0,0,0,0.05)] inline-flex justify-center items-center gap-2"
+            className=" w-full h-12  bg-yellow-500 "
           >
             Request a quote
           </Button>
         </div>
-
-        <div className="text-stone-900 text-xl mt-8 font-medium  leading-7 tracking-wide">
+        <h1 className="text-stone-900 text-xl mt-8 font-medium tracking-wide">
           Recensioner
-        </div>
+        </h1>
         {/* Testimonials */}
         <div className="w-full flex justify-center">
           {reviews.length > 0 && (
@@ -137,18 +136,18 @@ export function ChefProfile({
             />
           )}
         </div>
-
         {/* Gallery */}
         {gallery && gallery.length > 0 && (
-          <div className="w-full mt-8 flex flex-col justify-start items-start gap-6">
-            <div className="self-stretch px-5 inline-flex justify-between items-end">
-              <div className=" text-stone-900 text-xl font-medium  leading-7 tracking-wide">
+          <div className="w-full  flex flex-col gap-2">
+            <div className=" flex justify-between">
+              <h1 className=" text-stone-900 text-xl font-medium  tracking-wide">
                 Galleri
-              </div>
+              </h1>
+
               <Button
                 variant={"link"}
                 onClick={onVisa}
-                className=" text-yellow-800 text-sm font-semibold  leading-4 tracking-wide"
+                className=" text-yellow-800 text-sm font-semibold tracking-wide"
               >
                 Visa alla
               </Button>
@@ -158,7 +157,7 @@ export function ChefProfile({
               {gallery.slice(0, 2).map((url, i) => (
                 <div
                   key={i}
-                  className="w-full h-48 rounded-lg outline -outline-offset-1 outline-stone-300 overflow-hidden"
+                  className="w-full h-48 rounded-lg border border-stone-300 overflow-hidden"
                 >
                   <img className="w-full h-48 object-cover" src={url} alt="" />
                 </div>
@@ -166,70 +165,55 @@ export function ChefProfile({
             </div>
           </div>
         )}
-
         {/* Köksfakta */}
-
-        <div className="w-full mt-8 flex flex-col justify-start items-start gap-4">
-          <div className="self-stretch p-4 rounded-lg outline -outline-offset-1 outline-stone-300 inline-flex justify-start items-center gap-4">
-            <div className="size-6 relative overflow-hidden">
-              <Utensils className="size-4 left-0.75 top-[2.99px] absolute text-stone-700/70" />
-            </div>
-            <div className="inline-flex flex-col justify-start items-start">
-              <div className=" text-stone-700/70 text-sm font-semibold uppercase leading-4 tracking-wide">
-                Kökstyp
-              </div>
-              <div className=" text-stone-900 text-base font-medium leading-6">
+        <div className="w-full mt-8 flex flex-col  gap-4">
+          {/* 1 */}
+          <div className=" p-4 rounded-lg border border-stone-300 flex items-center gap-4">
+            <Utensils className="size-4  text-stone-700/70" />
+            <div className=" text-stone-700/70 text-sm font-semibold uppercase ">
+              Kökstyp
+              <div className=" text-stone-900 text-base font-medium ">
                 {kitchenFacts.kökstyp}
               </div>
             </div>
           </div>
-          <div className="self-stretch p-4 rounded-lg outline -outline-offset-1 outline-stone-300 inline-flex justify-start items-center gap-4">
-            <div className="size-6 relative overflow-hidden">
-              <UserRound className="size-4 left-[0.75px] top-[4.50px] absolute text-stone-700/70" />
-            </div>
-            <div className="inline-flex flex-col justify-start items-start">
-              <div className=" text-stone-700/70 text-sm font-semibold uppercase leading-4 tracking-wide">
-                kapacitet
-              </div>
-              <div className=" text-stone-900 text-base font-medium leading-6">
+          {/* 2 */}
+          <div className=" p-4 rounded-lg border border-stone-300 flex items-center gap-4">
+            <UserRound className="size-4  text-stone-700/70" />
+
+            <div className=" text-stone-700/70 text-sm font-semibold uppercase ">
+              kapacitet
+              <div className=" text-stone-900 text-base font-medium ">
                 {kitchenFacts.kapacitet} personer
               </div>
             </div>
           </div>
-          <div className="self-stretch p-4 rounded-lg outline -outline-offset-1 outline-stone-300 inline-flex justify-start items-center gap-4">
-            <div className="size-6 relative overflow-hidden">
-              <Languages className="size-4 left-[2.25px] top-[2.25px] absolute text-stone-700/70" />
-            </div>
-            <div className="inline-flex flex-col justify-start items-start">
-              <div className=" text-stone-700/70 text-sm font-semibold uppercase leading-4 tracking-wide">
-                Språk
-              </div>
-              <div className=" text-stone-900 text-base font-medium leading-6">
+          {/* 3 */}
+          <div className=" p-4 rounded-lg border border-stone-300 flex items-center gap-4">
+            <Languages className="size-4  text-stone-700/70" />
+            <div className=" text-stone-700/70 text-sm font-semibold uppercase ">
+              Språk
+              <div className=" text-stone-900 text-base font-medium ">
                 {kitchenFacts.språk.join(", ")}
               </div>
             </div>
           </div>
         </div>
-
         {/* Menyförslag */}
         {menus.length > 0 && (
-          <div className="w-full  mt-8 px-5 py-2 flex flex-col justify-start items-start gap-6">
-            <div className="self-stretch  text-stone-900 text-xl font-medium  leading-7 tracking-wide">
+          <div className="w-full  mt-8  flex flex-col  gap-4">
+            <h1 className=" text-stone-900 text-xl font-medium tracking-wide">
               Menyförslag
-            </div>
-            <div className="self-stretch bg-white rounded-lg shadow-[0px_1px_2px_0px_rgba(0,0,0,0.05)] outline -outline-offset-1 outline-stone-300 flex flex-col justify-start items-start gap-4 overflow-hidden p-4">
+            </h1>
+
+            <div className=" p-6 bg-white rounded-lg border border-stone-300 flex flex-col  gap-4 ">
               {menus[0].courses.map((course, i) => (
-                <div
-                  key={i}
-                  className="self-stretch inline-flex justify-start items-start gap-3"
-                >
-                  <CircleCheck className="size-4 mt-1 text-yellow-500 shrink-0" />
+                <div key={i} className="flex items-start gap-3">
+                  <CircleCheck className="size-4  text-yellow-500 " />
                   <div className="flex flex-col">
-                    <div className="text-stone-900 text-base font-normal  leading-6">
-                      {course.name}
-                    </div>
+                    <div className="text-stone-900 ">{course.name}</div>
                     {course.description && (
-                      <div className="text-stone-500 text-sm  leading-5">
+                      <div className="text-stone-500 text-sm ">
                         {course.description}
                       </div>
                     )}
@@ -241,36 +225,33 @@ export function ChefProfile({
         )}
 
         {/* Om kocken */}
-        <div className="w-full mt-8 px-5 py-2 flex flex-col justify-start items-start gap-4">
-          <div className="self-stretch inline-flex justify-between items-center">
-            <div className=" text-stone-900 text-xl font-medium  leading-7 tracking-wide">
+        <div className="w-full mt-8  flex flex-col  gap-4">
+          <div className="inline-flex justify-between ">
+            <h1 className=" text-stone-900 text-xl font-medium tracking-wide">
               Om kocken
-            </div>
-            <div className="flex justify-start items-center gap-1">
+            </h1>
+            <div className="flex items-center gap-1">
               <BadgeCheck className="size-4 fill-yellow-800 text-white" />
-              <div className=" text-yellow-800 text-sm font-semibold  leading-4 tracking-wide">
+              <div className=" text-yellow-800 text-sm font-semibold  tracking-wide">
                 Verifierad
               </div>
             </div>
           </div>
-          <div className="self-stretch  text-stone-700 text-base font-normal  leading-6">
-            {bio}
-          </div>
-          <div className="self-stretch px-4 pt-6 pb-4 bg-stone-200/30 rounded-lg outline -outline-offset-1 outline-stone-300 inline-flex justify-start items-center gap-4">
-            <ShieldCheck className="w-4 h-5 text-yellow-800" />
-            <div className=" text-stone-500 text-base font-medium  leading-6">
+          <div className=" text-stone-700 text-base font-normal">{bio}</div>
+          <div className=" p-4 bg-stone-200/30 rounded-lg border border-stone-300 inline-flex items-center gap-4">
+            <ShieldCheck className="size-4 text-yellow-800" />
+            <div className=" text-stone-500  font-medium ">
               Bakgrundskontrollerad och certifierad
             </div>
           </div>
         </div>
-
         {/* Berättelse från kommunen */}
-        <div className="w-full px-5 py-8 bg-orange-50 border-t border-b border-stone-300/50 flex flex-col justify-start items-start gap-4">
-          <div className="self-stretch  text-stone-900 text-xl font-medium  leading-7 tracking-wide">
+        <div className="w-full px-5 py-8 mt-8 bg-orange-50 border-t border-b border-stone-300/50 flex flex-col  gap-4">
+          <h1 className=" text-stone-900 text-xl font-medium tracking-wide">
             Berättelse från kommunen
-          </div>
-          <div className="self-stretch pl-6 border-l-2 border-yellow-500/40 flex flex-col justify-start items-start">
-            <div className="self-stretch  text-stone-700 text-base font-normal  leading-6">
+          </h1>
+          <div className=" pl-6 border-l-2 border-yellow-500/40 flex flex-col ">
+            <div className=" text-stone-700 font-normal ">
               &quot;{municipalityStory}&quot;
             </div>
           </div>

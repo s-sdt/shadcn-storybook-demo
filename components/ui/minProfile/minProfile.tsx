@@ -59,14 +59,14 @@ export function MinProfile({
   const form = useForm<MinProfileFormValues>({ defaultValues });
 
   return (
-    <div className="w-full sm:max-w-2xl mx-auto pb-3.5 bg-stone-50 flex flex-col items-start">
+    <div className="w-full sm:max-w-2xl mx-auto pb-3.5 bg-stone-50 flex flex-col ">
       {/* Hero  */}
       <div className="w-full h-40 bg-yellow-500/30 relative">
         <Button
           onClick={onChangePic}
-          className="absolute right-3 bottom-3 p-2 bg-white/80 rounded-sm outline -outline-offset-1 outline-stone-300"
+          className="absolute right-3 bottom-3 p-2 bg-white/80 rounded-sm "
         >
-          <Camera className="w-4 h-3.5 text-stone-900" />
+          <Camera className="size-4 text-stone-900" />
         </Button>
       </div>
 
@@ -78,10 +78,10 @@ export function MinProfile({
           alt="avatar"
         />
         <div className="flex flex-col">
-          <div className="text-stone-900 text-3xl font-semibold  leading-10">
+          <div className="text-stone-900 text-3xl font-semibold ">
             Min profil
           </div>
-          <div className="text-stone-700 text-base  leading-6">
+          <div className="text-stone-700 ">
             Uppdatera foto och personuppgifter.
           </div>
         </div>
@@ -96,18 +96,18 @@ export function MinProfile({
       </div>
 
       <Form {...form}>
-        <form className="w-full px-4 flex flex-col gap-8 mt-8">
+        <form className="w-full px-4 flex flex-col gap-4 mt-8">
           {/* Public toggle */}
           <FormField
             control={form.control}
             name="isPublic"
             render={({ field }) => (
-              <div className="w-full p-4 bg-white rounded-lg outline outline-stone-300 flex flex-row justify-between items-center">
+              <div className="w-full p-4 bg-white rounded-lg border border-stone-300 flex justify-between ">
                 <div className="flex flex-col">
                   <span className="text-stone-900 text-sm font-medium ">
                     Publicera min profil
                   </span>
-                  <span className="w-full text-stone-700 text-[10px] font-semibold ">
+                  <span className=" text-stone-700 text-xs font-normal ">
                     När du är redo för att göra din profil offentlig, aktivera
                     detta
                   </span>
@@ -122,7 +122,7 @@ export function MinProfile({
 
           {/* Personlig information */}
           <div className="w-full flex flex-col gap-4 border-t-4 border-stone-300 pt-4">
-            <div className="text-stone-900 text-sm font-medium ">
+            <div className="text-stone-900 text-lg font-medium ">
               Personlig information
             </div>
             {/* Förnamn */}
@@ -134,7 +134,7 @@ export function MinProfile({
                   <FormLabel>Förnamn</FormLabel>
                   <FormControl>
                     <Input
-                      className="bg-orange-50 outline -outline-offset-1 outline-stone-300"
+                      className="bg-orange-50 border border-stone-300"
                       {...field}
                     />
                   </FormControl>
@@ -151,7 +151,7 @@ export function MinProfile({
                   <FormLabel>Efternamn</FormLabel>
                   <FormControl>
                     <Input
-                      className="bg-orange-50 outline -outline-offset-1 outline-stone-300"
+                      className="bg-orange-50 border border-stone-300"
                       {...field}
                     />
                   </FormControl>
@@ -172,7 +172,7 @@ export function MinProfile({
                     onValueChange={field.onChange}
                   >
                     <FormControl>
-                      <SelectTrigger className="bg-orange-50 outline -outline-offset-1 outline-stone-300 w-full">
+                      <SelectTrigger className="bg-orange-50 border border-stone-300 w-full">
                         <SelectValue placeholder="Välj kommun" />
                       </SelectTrigger>
                     </FormControl>
@@ -199,7 +199,7 @@ export function MinProfile({
                   <FormLabel>Erfarenhet (antal år)</FormLabel>
                   <FormControl>
                     <Input
-                      className="bg-orange-50 outline -outline-offset-1 outline-stone-300"
+                      className="bg-orange-50 border border-stone-300"
                       {...field}
                       onChange={(e) => field.onChange(Number(e.target.value))}
                     />
@@ -212,7 +212,7 @@ export function MinProfile({
 
           {/* Om dig */}
           <div className="w-full flex flex-col gap-4 border-t-4 border-stone-300 pt-4">
-            <div className="text-stone-900 text-sm font-medium ">Om dig</div>
+            <div className="text-stone-900 text-lg font-medium ">Om dig</div>
             <FormField
               control={form.control}
               name="bio"
@@ -221,7 +221,7 @@ export function MinProfile({
                   <FormLabel>Berätta om dig själv</FormLabel>
                   <FormControl>
                     <Textarea
-                      className="bg-orange-50 outline -outline-offset-1 outline-stone-300 min-h-28"
+                      className="bg-orange-50 border border-stone-300 min-h-28"
                       {...field}
                     />
                   </FormControl>
@@ -237,7 +237,7 @@ export function MinProfile({
                   <FormLabel>Berätta om din koppling till din ort</FormLabel>
                   <FormControl>
                     <Textarea
-                      className="bg-orange-50 outline -outline-offset-1 outline-stone-300 min-h-20"
+                      className="bg-orange-50 border border-stone-300 min-h-20"
                       {...field}
                     />
                   </FormControl>
@@ -253,7 +253,7 @@ export function MinProfile({
                   <FormLabel>Nämn dina bästa talanger i köket</FormLabel>
                   <FormControl>
                     <Textarea
-                      className="bg-orange-50 outline -outline-offset-1 outline-stone-300 min-h-20"
+                      className="bg-orange-50 border border-stone-300 min-h-20"
                       {...field}
                     />
                   </FormControl>
@@ -265,18 +265,22 @@ export function MinProfile({
 
           {/* Galleri */}
 
-          <div className="text-stone-900 text-sm font-medium ">Galleri</div>
+          <div className="text-stone-900 text-lg font-medium ">Galleri</div>
           <div className="w-full grid grid-cols-2 gap-4">
             {gallery?.map((g, i) => (
               <div key={i} className="relative">
-                <img src={g} className="w-full h-24 object-cover rounded-sm" />
+                <img
+                  src={g}
+                  className="w-full h-24 object-cover rounded-sm"
+                  alt=""
+                />
               </div>
             ))}
 
             <Button
               variant={"outline"}
               onClick={onAddGallery}
-              className="w-full h-24 bg-orange-50 rounded-sm outline -outline-offset-2 outline-stone-300 flex flex-col justify-center items-center gap-1"
+              className="w-full h-24 bg-orange-50  "
             >
               <FileUp className="size-4 text-stone-500" />
               <span className="text-stone-500 text-xs font-semibold ">
