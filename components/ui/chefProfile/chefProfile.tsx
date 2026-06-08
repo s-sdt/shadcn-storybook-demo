@@ -127,12 +127,10 @@ export function ChefProfile({
           Recensioner
         </h1>
         {/* Testimonials */}
-        <div className="w-full flex justify-center">
+        <div className="w-full mt-8 flex justify-center">
           {reviews.length > 0 && (
             <Testimonial
-              reviews={[...reviews]
-                .sort((a, b) => b.rating - a.rating)
-                .slice(0, 1)}
+              reviews={[...reviews].sort((a, b) => b.rating - a.rating)}
             />
           )}
         </div>

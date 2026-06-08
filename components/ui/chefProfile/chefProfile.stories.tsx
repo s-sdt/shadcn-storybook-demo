@@ -4,7 +4,9 @@ import { ChefProfile } from "./chefProfile";
 const meta = {
   title: "UI/ChefProfile",
   component: ChefProfile,
-  parameters: { layout: "centered" },
+  parameters: {
+    layout: "centered",
+  },
   tags: ["autodocs"],
   args: {
     firstName: "Sara",
@@ -60,7 +62,7 @@ const meta = {
         id: "review-2",
         customerName: "Erik Svensson",
         date: "3 Juni 2024",
-        rating: 4,
+        rating: 4.5,
         comment:
           "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Autem quae at aliquam tenetur similique assumenda, consequuntur beatae culpa ipsa eum?",
       },
